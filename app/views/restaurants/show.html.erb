@@ -1,0 +1,26 @@
+<h1>Restaurants</h1>
+
+<h3><%= @restaurant.name %></h3>
+
+<strong><%= "#{@restaurant.address}" %></strong><br>
+<strong><%= "#{@restaurant.city}, #{@restaurant.state}, #{@restaurant.zipcode}" %></strong><br><br>
+
+<div><%= @restaurant.description %></div><br/>
+<div><%= link_to "Return to restaurant list", restaurants_path %></div></br>
+
+<h3>Review this restaurant</h3>
+<%= form_for :review, url: restaurants_path do |f| %>
+  <p>
+    <%= f.label :rating %><br>
+    <%= f.text_field :rating %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

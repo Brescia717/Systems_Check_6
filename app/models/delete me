@@ -1,0 +1,127 @@
+class CreateRestaurants < ActiveRecord::Migration
+  def change
+    create_table :restaurants do |t|
+      t.string :name, null: false
+      t.string :address, null: false
+      t.string :city, null: false
+      t.string :state, null: false
+      t.integer :zipcode, null: false
+      t.text :description
+      t.string :category
+
+      t.timestamps
+    end
+  end
+end
+
+
+class CreateReviews < ActiveRecord::Migration
+  def change
+    create_table :reviews do |t|
+      t.integer :rating
+      t.text :body
+      t.datetime :date
+
+      t.timestamps
+    end
+  end
+end
+
+  <% @reviews.each do |review| %>
+    <tr>
+      <td><%= review.rating %></td>
+      <td><%= link_to "See More", review_path(review) %></td>
+    </tr>
+  <% end %>
+
+
+  <%= link_to "New Restaurant", new_restaurant_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zipcode</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
+      <td><%= restaurant.city %></td>
+    </tr>
+  <% end %>
+
+
+</table>
+
+
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zipcode</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td><%= @restaurant.name %></td>
+    <td><%= @restaurant.address %></td>
+    <td><%= @restaurant.city %></td>
+    <td><%= @restaurant.state %></td>
+    <td><%= @restaurant.zipcode %></td>
+    <td><%= @restaurant.description %></td>
+    <td><%= @restaurant.category %></td>
+  </tr>
+</table>
+
+#restaurants/view/new
+<%= form_for :restaurant, url: restaurants_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </p>
+
+  <p>
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </p>
+
+  <p>
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
