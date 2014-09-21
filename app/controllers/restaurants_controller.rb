@@ -23,6 +23,8 @@ class RestaurantsController < ApplicationController
   end
 
   private
+### Something is happening here.  The '/restuaraunts' page works when directly going there,
+### but if redirected, it crashes.
     def restaurant_params
       params.require(:restaurant).permit(:name, :address, :city, :state, :zipcode,
         :description, :category)
