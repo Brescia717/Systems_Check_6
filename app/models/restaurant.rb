@@ -4,5 +4,6 @@ class Restaurant < ActiveRecord::Base
   validates :name, null: false
   validates :address, null: false
   validates :city, null: false
+  validates :state, null: false
   validates :zip_code, null: false
 end
